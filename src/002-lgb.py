@@ -1,6 +1,6 @@
 # initial lbg of just train
-# local 3.835
-# kaggle
+# local score  3.835
+# kaggle score 3.922
 # minimize score
 
 import os

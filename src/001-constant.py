@@ -1,5 +1,5 @@
 # baseline: constant value
-# local score 3.852
+# local score  3.852
 # kaggle score 3.931
 
 import sys  # noqa
