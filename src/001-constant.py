@@ -1,8 +1,8 @@
-# baseline: constant value 1
+# baseline: constant value
 # local score 3.852
 # kaggle score 3.931
 
-import sys  # pylint: disable=unused-import
+import sys  # noqa
 import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_squared_error
@@ -18,7 +18,7 @@ zipext = ''  # if is_kaggle else '.zip'
 train = pd.read_csv(f'../input/train.csv{zipext}')
 test = pd.read_csv(f'../input/test.csv{zipext}')
 
-#-------- main
+# -------- main
 
 start_time = time()
 
