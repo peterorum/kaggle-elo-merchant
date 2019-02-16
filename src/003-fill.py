@@ -119,7 +119,7 @@ def replace_missing_values(train, test, unique_id, target):
 
     # replace missing categoricals with mode
     for col in categorical_cols:
-        if train[col].isna().any():
+        if train[col].isna().any() or test[col].isna().any():
             mode = train[col].mode()[0]
 
             train[col].fillna(mode, inplace=True)
@@ -353,7 +353,19 @@ def get_arithmetic_features(train, test, unique_id, target):
 
     return train, test
 
-# --- run
+
+# custom features
+
+def get_custom_features(train, test, unique_id, target):
+
+    # convert yyyy-mm to number of months
+
+    train['first_active_months'] = train['first_active_month'].apply(lambda x: int(x[0:4]) * 12 + int(x[5:7]))
+    test['first_active_months'] = test['first_active_month'].apply(lambda x: int(x[0:4]) * 12 + int(x[5:7]))
+
+    return train, test
+
+# --------------------- run
 
 
 def run():
@@ -373,6 +385,8 @@ def run():
     train, test = replace_missing_values(train, test, unique_id, target)
 
     train, test = get_column_differences(train, test, unique_id, target)
+
+    train, test = get_custom_features(train, test, unique_id, target)
 
     train, test = get_arithmetic_features(train, test, unique_id, target)
 
